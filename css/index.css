@@ -1,0 +1,156 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Play&display=swap');
+/* 
+font-family: 'Monoton', cursive; 
+font-family: 'Play', sans-serif; 
+*/
+
+body { font-family: 'Play', sans-serif; font-size: 18px;}
+
+body, html { overflow: hidden;}
+.vid { height: 100vh; position: relative;} /* 모니터 높이랑 같은 높이 */
+.vid video { min-width: 100%; min-height: 100%; /* 영상을 화면과 똑같은 크기로 맞출때 min속성 사용/일반컨텐츠는 그냥 사용 */
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+} 
+
+#header { 
+    position: fixed; top: 0; left: -350px; /* 부모한테 이미 포지션값이 있으면 absolute 추가할 필요 없음 */
+    height: 100%; width: 700px; /* fixed는 부모가 모니터가 기준이됨 */
+    background-image: linear-gradient(-45deg, #e6fc55, #b9fb05, #97e031);
+    transform: skew(-40deg);
+}  
+#header h1 {
+    position: absolute; top: 40px; right: 150px;
+    transform: skew(40deg)
+}
+#header h1 img { width: 280px;}
+
+#nav {position: absolute; top: 200px; right:0}
+#nav .depth1 > li { width: 220px; transition: all 0.3s; position: relative;}
+#nav .depth1 > li:first-child { background-color: #000; color: #fff;}
+#nav .depth1 > li:hover { background-color: #000; color: #fff;}
+#nav .depth1 > li > a { display: block; padding: 15px 40px 15px 0; text-align: right;} /* 박스전체에 링크를 걸리게 하기 위해 block으로 바꿔줌,li와 a가 같이 있을떈 a에게 패딩 줌,text-align은 순수 block에게만 줄 수 있음 */
+#nav .depth1 > li > a > strong { 
+    transform: skew(40deg); 
+    display: inline-block;
+    /* strong은 인라인성격이여서 트랜스폼이 안먹힘,글씨를 바로 세우기 위해서 a태그에 skew 적용x */
+}
+#nav .depth1 > li > a > strong > i { margin-right: 10px; } /* 웹폰트 i태그에는 transform,padding X */
+
+#nav .depth2 {
+    position: absolute; top: 0; left: 0; 
+    opacity: 0;
+    transition: all 0.5s;
+}
+#nav .depth1 > li:first-child > .depth2 {left: 95%; opacity: 1;}
+#nav .depth1 > li:hover > .depth2  {left: 95%; opacity: 1;}
+#nav .depth2 > li { 
+    background-color: rgba(0, 0, 0, 0.5); color: #fff;
+    font-size: 16px;
+    border-bottom: 1px solid #b9fb05;
+    width: 180px;
+    margin-bottom: 3px;
+}
+#nav .depth2 > li:hover { background-color: rgba(185,251,5,0.5); color: #000;}
+#nav .depth2 > li > a { display: block; padding: 10px 10px; text-align: center; }
+#nav .depth2 > li > a > span { 
+    transform: skew(40deg); 
+    display: inline-block;
+    font-weight: bold;
+}
+
+.sns { position: fixed; top:60px; right: 50px;}
+.sns a{ 
+    font-size: 25px; 
+    color: rgba(185,251,5,0.5);
+    padding: 0 10px;
+    transition: all 0.3s;
+}
+.sns a:hover { 
+    transform: scale(1.4); 
+    color: rgba(185,251,5,1);
+    display: inline-block;
+}
+
+.text { position: fixed; top: 200px; right: 70px;}
+.text div:first-child { 
+    font-family: 'Monoton', cursive; 
+    font-size: 160px; color: #b9fb05;
+}
+.text em {
+    font-family: 'Play', sans-serif; 
+    font-size: 50px; color: #fff;
+    font-style: normal;
+}
+.text div:last-child {
+    font-size: 34px;
+    font-family: 'Play', sans-serif; 
+    color: #bbb; letter-spacing: -2px;
+    /* position: relative; top: -50px 자기자신 위치에서 움직이고 싶을때 relative사용*/
+    /* margin-top: -50px; */
+    transform: translateY(-50px);
+    
+}
+.text span {
+    font-family: 'Arial';
+    color: #b9fb05;
+    padding-left: 20px;
+}
+
+.side { 
+    width: 800px; 
+    height: 100%; 
+    background-color: #111;
+    opacity: 0.5;
+    position: fixed; top:0; right: -800px;
+    transform: skew(-40deg);
+    transition: all 0.5s;
+}
+.side:hover {right: -500px; opacity: 0.8;}
+.side .content {
+    width: 400px; 
+    height: 100%;
+    background-color: #000;
+    position: relative;
+    left:135px; color:#a0bd50;  
+    transition: all 1s;
+}
+.side:hover .content {left: 50px;}
+.side .content p:first-child { position: absolute; bottom: 270px; left: 250px; transition: all 0.4s;}
+.side .content p:nth-child(2) { position: absolute; bottom: 160px; left: 250px; transition: all 0.8s;}
+.side .content p:last-child { position: absolute; bottom: 50px; left: 250px; transition: all 1.2s;}
+.side:hover .content p {left: 50px;}
+.side .content p em {
+    transform: skew(40deg); display: inline-block; opacity: 1;
+    /* font-weight: bold; font-style: normal;
+    font-size: 16px; line-height: 1.7; font-family: 'arial'; */
+     font: bold normal 16px/1.7 'arial', sans-serif;
+}
+.side .content p img {opacity: 0.3; transition: all 0.3s;}
+.side .content p img:hover {opacity: 1;}
+
+.side .arrow {
+    position: absolute; bottom:40px; left:70px;
+    color: #b9fb05;
+    font-size: 50px;
+    transform: skew(40deg);
+    transition: all 0.5s;
+    width: 150px; height: 50px;
+    /* 자식태그 전부가 absoute(or float)를 쓰면 부모가 높이를 잃어버리기 때문에 지정해줌 */
+}
+.side:hover .arrow {left: 700px;}
+.side .arrow i {
+    position: absolute; right: 0; top: 0;
+    animation: arrani 1.5s infinite linear;
+}
+.side .arrow i:first-child {animation-delay: 0s;}
+.side .arrow i:nth-child(2) {animation-delay: 0.5s;}
+.side .arrow i:last-child {animation-delay: 1s;}
+
+@keyframes arrani {
+    0% { }
+    100% {
+        transform: scale(1.5); right: 100px;
+        opacity: 0;
+    }
+}
